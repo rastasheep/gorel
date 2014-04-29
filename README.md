@@ -15,6 +15,29 @@ It's not likely that it could help you with developing your application. However
 * Plays nice with all Golang packages / frameworks.
 * Intended to be a framework framework, works standalone too.
 
+## A Gentle Introduction
+
+Generating a basic query is very simple. For example, in order to produce
+
+```sql
+SELECT * FROM users
+```
+
+you construct a table relation and convert it to sql:
+
+```go
+users = gorel.Table("users")
+query = users.Select("*")
+query.ToSql
+```
+
+```go
+query = users.where(users.AttrEqual("name", "amy") )
+
+# => SELECT * FROM users WHERE users.name = "amy"
+```
+
+
 ## About
 
 Inspired by [Arel](https://github.com/rails/arel) and [Ecto](https://github.com/elixir-lang/ecto)
