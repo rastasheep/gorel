@@ -26,15 +26,21 @@ SELECT * FROM users
 you construct a table relation and convert it to sql:
 
 ```go
-users = gorel.Table("users")
-query = users.Select("*")
-query.ToSql
+users = gorel.Table("users").ToSql()
+
+//or
+
+users = gorel.Table("users").Select("*").ToSql()
+
+// SELECT * FROM users WHERE users.name = "amy"
 ```
 
 ```go
-query = users.where(users.AttrEqual("name", "amy") )
+users = gorel.Table("users")
 
-# => SELECT * FROM users WHERE users.name = "amy"
+query = uses.Where(users.Eq("name", "amy")).ToSql()
+
+// SELECT * FROM users WHERE users.name = "amy"
 ```
 
 
